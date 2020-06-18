@@ -12,4 +12,10 @@ resource "aws_elastic_beanstalk_environment" "core-prod-env" {
       name      = "IamInstanceProfile"
       value     = "aws-elasticbeanstalk-ec2-role"
     }
+
+  setting {
+      namespace = "aws:autoscaling:asg"
+      name      = "MaxSize"
+      value     = 1                     # Create no more than 1 EC2 instance
+    }
 }

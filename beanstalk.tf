@@ -10,12 +10,30 @@ resource "aws_elastic_beanstalk_environment" "core-prod-env" {
   setting {
       namespace = "aws:autoscaling:launchconfiguration"
       name      = "IamInstanceProfile"
-      value     = "aws-elasticbeanstalk-ec2-role"
+      value     = "aws-elasticbeanstalk-ec2-role" # I don't know what does it do
     }
 
   setting {
       namespace = "aws:autoscaling:asg"
       name      = "MaxSize"
       value     = 1                     # Create no more than 1 EC2 instance
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:cloudwatch:logs"
+      name      = "StreamLogs"
+      value     = true                  # Stream logs to CloudWatch
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:cloudwatch:logs"
+      name      = "RetentionInDays"
+      value     = 1                     # Retain logs for only 1 day
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:cloudwatch:logs"
+      name      = "DeleteOnTerminate"
+      value     = true                  # Delete logs after the Beanstalk app was deleted
     }
 }

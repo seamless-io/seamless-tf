@@ -36,4 +36,16 @@ resource "aws_elastic_beanstalk_environment" "core-prod-env" {
       name      = "DeleteOnTerminate"
       value     = true                  # Delete logs after the Beanstalk app was deleted
     }
+
+  setting {
+      namespace = "aws:autoscaling:launchconfiguration"
+      name      = "EC2KeyName"
+      value     = aws_key_pair.core-prod-key-pair.key_name  # Key pair to access EC2 using ssh
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AWS_REGION_NAME"
+      value     = var.AWS_REGION
+    }
 }

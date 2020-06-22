@@ -1,4 +1,4 @@
-resource "aws_iam_policy" "core_instance_policy" {
+resource "aws_iam_policy" "core_instance_policy" {   # Allow instances of core to work with cloudwatch
   name        = "core_instance_policy"
 
   policy = <<EOF
@@ -11,6 +11,7 @@ resource "aws_iam_policy" "core_instance_policy" {
         "logs:PutLogEvents",
         "logs:CreateLogStream",
         "logs:CreateLogGroup",
+        "logs:PutRetentionPolicy",
         "logs:DescribeLogStreams",
         "logs:DescribeLogGroups"
       ],
@@ -27,7 +28,7 @@ resource "aws_iam_role_policy_attachment" "instance_permissions" {
     policy_arn = aws_iam_policy.core_instance_policy.arn
 }
 
-resource "aws_iam_role" "core_instance_role" {  # Allow instances of core to work with cloudwatch
+resource "aws_iam_role" "core_instance_role" {
     name = "core_instance_role"
     assume_role_policy = <<EOF
 {

@@ -46,6 +46,12 @@ resource "aws_elastic_beanstalk_environment" "core-prod-env" {
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AWS_REGION_NAME"
-      value     = var.AWS_REGION
+      value     = var.AWS_REGION         # Environment variable needed for boto3 client
     }
+
+  setting {
+        namespace = "aws:autoscaling:launchconfiguration"
+        name      = "IamInstanceProfile"
+        value     = aws_iam_instance_profile.core_instance_profile.name  # Add permissions to ec2 instances
+      }
 }

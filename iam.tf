@@ -69,7 +69,45 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "ECRPullAccess",
+        "Sid": "BucketAccess",
+        "Action": [
+            "s3:Get*",
+            "s3:List*",
+            "s3:PutObject"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+            "arn:aws:s3:::elasticbeanstalk-*",
+            "arn:aws:s3:::elasticbeanstalk-*/*"
+        ]
+    },
+    {
+        "Sid": "XRayAccess",
+        "Action": [
+            "xray:PutTraceSegments",
+            "xray:PutTelemetryRecords",
+            "xray:GetSamplingRules",
+            "xray:GetSamplingTargets",
+            "xray:GetSamplingStatisticSummaries"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+    },
+    {
+        "Sid": "CloudWatchLogsAccess",
+        "Action": [
+            "logs:PutLogEvents",
+            "logs:CreateLogStream",
+            "logs:DescribeLogStreams",
+            "logs:DescribeLogGroups"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+            "arn:aws:logs:*:*:log-group:/aws/elasticbeanstalk*"
+        ]
+    },
+    {
+      "Sid": "ECRAccess",
       "Action": [
         "ecr:GetAuthorizationToken",
         "ecr:DescribeImages",
@@ -79,7 +117,24 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
         "ecr:BatchCheckLayerAvailability"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_ecr_repository.web-prod.arn}"
+      "Resource": "*"
+    },
+    {
+      "Sid": "ECSAccess",
+      "Effect": "Allow",
+      "Action": [
+          "ecs:Poll",
+          "ecs:StartTask",
+          "ecs:StopTask",
+          "ecs:DiscoverPollEndpoint",
+          "ecs:StartTelemetrySession",
+          "ecs:RegisterContainerInstance",
+          "ecs:DeregisterContainerInstance",
+          "ecs:DescribeContainerInstances",
+          "ecs:Submit*",
+          "ecs:DescribeTasks"
+      ],
+      "Resource": "*"
     }
   ]
 }

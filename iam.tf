@@ -61,7 +61,7 @@ resource "aws_iam_instance_profile" "core_instance_profile" {
 ##                    Web Prod                     ##
 #####################################################
 
-resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to pull from ECR repo "web-prod"
+resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to work with cloudwatch
   name        = "web_instance_policy"
 
   policy = <<EOF
@@ -69,71 +69,16 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
   "Version": "2012-10-17",
   "Statement": [
     {
-        "Sid": "BucketAccess",
-        "Action": [
-            "s3:Get*",
-            "s3:List*",
-            "s3:PutObject"
-        ],
-        "Effect": "Allow",
-        "Resource": [
-            "arn:aws:s3:::elasticbeanstalk-*",
-            "arn:aws:s3:::elasticbeanstalk-*/*"
-        ]
-    },
-    {
-        "Sid": "XRayAccess",
-        "Action": [
-            "xray:PutTraceSegments",
-            "xray:PutTelemetryRecords",
-            "xray:GetSamplingRules",
-            "xray:GetSamplingTargets",
-            "xray:GetSamplingStatisticSummaries"
-        ],
-        "Effect": "Allow",
-        "Resource": "*"
-    },
-    {
-        "Sid": "CloudWatchLogsAccess",
-        "Action": [
-            "logs:PutLogEvents",
-            "logs:CreateLogStream",
-            "logs:DescribeLogStreams",
-            "logs:DescribeLogGroups"
-        ],
-        "Effect": "Allow",
-        "Resource": [
-            "arn:aws:logs:*:*:log-group:/aws/elasticbeanstalk*"
-        ]
-    },
-    {
-      "Sid": "ECRAccess",
+      "Sid": "CloudWatchLogsAccess",
       "Action": [
-        "ecr:GetAuthorizationToken",
-        "ecr:DescribeImages",
-        "ecr:DescribeRepositories",
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "ecr:BatchCheckLayerAvailability"
+        "logs:PutLogEvents",
+        "logs:CreateLogStream",
+        "logs:CreateLogGroup",
+        "logs:PutRetentionPolicy",
+        "logs:DescribeLogStreams",
+        "logs:DescribeLogGroups"
       ],
       "Effect": "Allow",
-      "Resource": "*"
-    },
-    {
-      "Sid": "ECSAccess",
-      "Effect": "Allow",
-      "Action": [
-          "ecs:Poll",
-          "ecs:StartTask",
-          "ecs:StopTask",
-          "ecs:DiscoverPollEndpoint",
-          "ecs:StartTelemetrySession",
-          "ecs:RegisterContainerInstance",
-          "ecs:DeregisterContainerInstance",
-          "ecs:DescribeContainerInstances",
-          "ecs:Submit*",
-          "ecs:DescribeTasks"
-      ],
       "Resource": "*"
     }
   ]

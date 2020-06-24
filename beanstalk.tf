@@ -9,7 +9,7 @@ resource "aws_elastic_beanstalk_application" "core-prod" {
 resource "aws_elastic_beanstalk_environment" "core-prod-env" {
   name                = "core-prod-env"
   application         = aws_elastic_beanstalk_application.core-prod.name
-  solution_stack_name = "64bit Amazon Linux 2 v3.0.3 running Python 3.7"
+  solution_stack_name = "64bit Amazon Linux 2 v3.0.2 running Python 3.7"
 
   setting {
       namespace = "aws:autoscaling:asg"
@@ -67,7 +67,7 @@ resource "aws_elastic_beanstalk_application" "web-prod" {
 resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   name                = "web-prod-env"
   application         = aws_elastic_beanstalk_application.web-prod.name
-  solution_stack_name = "64bit Amazon Linux 2 v3.0.3 running Python 3.7"
+  solution_stack_name = "64bit Amazon Linux 2 v3.0.2 running Python 3.7"
 
   setting {
       namespace = "aws:autoscaling:asg"

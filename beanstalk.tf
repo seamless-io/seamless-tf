@@ -110,4 +110,44 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
         name      = "IamInstanceProfile"
         value     = aws_iam_instance_profile.web_instance_profile.name  # Add permissions to ec2 instances
       }
+
+  # [START] Environment variables for database connection
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "SEAMLESS_DB_NAME"
+      value     = aws_db_instance.web_prod.name
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "SEAMLESS_DB_NAME"
+      value     = aws_db_instance.web_prod.name
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "SEAMLESS_DB_USER"
+      value     = aws_db_instance.web_prod.username
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "SEAMLESS_DB_PASSWORD"
+      value     = aws_db_instance.web_prod.password
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "SEAMLESS_DB_HOST"
+      value     = aws_db_instance.web_prod.address
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "SEAMLESS_DB_PORT"
+      value     = aws_db_instance.web_prod.port
+    }
+
+  # [END] Environment variables for database connection
 }

@@ -121,12 +121,6 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
-      name      = "SEAMLESS_DB_NAME"
-      value     = aws_db_instance.web_prod.name
-    }
-
-  setting {
-      namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SEAMLESS_DB_USER"
       value     = aws_db_instance.web_prod.username
     }

@@ -29,4 +29,4 @@ override.tf.json
 # example: *tfplan*
 
 *prod-key-pair*
-web-prod-rds-password
+web-prod*

@@ -144,4 +144,32 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
     }
 
   # [END] Environment variables for database connection
+
+  # [START] Environment variables for Auth0 connection
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_BASE_URL"
+      value     = "https://seamlesscloud.us.auth0.com"
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_CALLBACK_URL"
+      value     = "http://web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/callback"
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_CLIENT_ID"
+      value     = data.aws_kms_secrets.web_prod_env.plaintext["AUTH0_CLIENT_ID"]
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_CLIENT_SECRET"
+      value     = data.aws_kms_secrets.web_prod_env.plaintext["AUTH0_CLIENT_SECRET"]
+    }
+
+  # [END] Environment variables for Auth0 connection
 }

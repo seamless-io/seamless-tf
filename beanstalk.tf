@@ -56,7 +56,7 @@ resource "aws_elastic_beanstalk_environment" "core-prod-env" {
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_WEB_API_AUDIENCE"
-      value     = "http://web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core"
+      value     = "web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core"
     }
 
   setting {
@@ -181,7 +181,7 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_WEB_API_AUDIENCE"
-      value     = "http://web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core"
+      value     = "web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core"
     }
 
   setting {

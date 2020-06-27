@@ -52,6 +52,25 @@ resource "aws_elastic_beanstalk_environment" "core-prod-env" {
         name      = "IamInstanceProfile"
         value     = aws_iam_instance_profile.core_instance_profile.name  # Add permissions to ec2 instances
       }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_WEB_API_AUDIENCE"
+      value     = "http://web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core"
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_CLIENT_ID"
+      value     = data.aws_kms_secrets.core_prod_env.plaintext["AUTH0_CLIENT_ID"]
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_CLIENT_SECRET"
+      value     = data.aws_kms_secrets.core_prod_env.plaintext["AUTH0_CLIENT_SECRET"]
+    }
+
 }
 
 
@@ -157,6 +176,12 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_CALLBACK_URL"
       value     = "http://web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/callback"
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "AUTH0_WEB_API_AUDIENCE"
+      value     = "http://web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core"
     }
 
   setting {

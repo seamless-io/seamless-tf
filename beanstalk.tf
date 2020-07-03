@@ -99,13 +99,13 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_CALLBACK_URL"
-      value     = "http://web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/callback"
+      value     = "http://app.seamlesscloud.io/callback"
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_WEB_API_AUDIENCE"
-      value     = "web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core"
+      value     = "web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core" # no API calls are made to this url and I cannot change it in Auth0 after creation
     }
 
   setting {
@@ -127,4 +127,27 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
       name      = "AWS_REGION_NAME"
       value     = var.AWS_REGION         # Environment variable needed for boto3 client
     }
+
+  # [START] Configuring load balancer listener
+
+    setting {
+      namespace = "aws:elasticbeanstalk:environment"
+      name      = "LoadBalancerType"
+      value     = "application"
+    }
+
+  setting {
+      namespace = "aws:elbv2:listener:443"
+      name      = "Protocol"
+      value     = "HTTPS"
+    }
+
+  setting {
+    namespace = "aws:elbv2:listener:443"
+    name      = "SSLCertificateArns"
+    value     = "arn:aws:acm:us-east-1:202868668807:certificate/c6c35492-9e92-4d6c-bd12-9ff974c373df"
+    }
+
+  # [END] Configuring load balancer listener
+
 }

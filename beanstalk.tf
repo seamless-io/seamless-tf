@@ -160,7 +160,7 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   setting {
     namespace = "aws:elasticbeanstalk:sqsd"
     name      = "HttpPath"
-    value     = "/execute"
+    value     = "/jobs/execute"
     }
   # [END] Configuring queue listener
 

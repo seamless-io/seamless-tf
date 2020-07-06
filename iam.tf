@@ -17,12 +17,47 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
         "logs:CreateLogGroup",
         "logs:PutRetentionPolicy",
         "logs:DescribeLogStreams",
-        "logs:DescribeLogGroups",
+        "logs:DescribeLogGroups"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "CloudWatchEventsAccess",
+      "Action": [
         "events:PutRule",
         "events:PutTargets"
       ],
       "Effect": "Allow",
       "Resource": "*"
+    },
+    {
+      "Sid": "QueueAccess",
+      "Action": [
+        "sqs:ChangeMessageVisibility",
+        "sqs:DeleteMessage",
+        "sqs:ReceiveMessage",
+        "sqs:SendMessage"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "DynamoPeriodicTasks",
+      "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:Query",
+          "dynamodb:Scan",
+          "dynamodb:UpdateItem"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+          "arn:aws:dynamodb:*:*:table/*-stack-AWSEBWorkerCronLeaderRegistry*"
+      ]
     }
   ]
 }

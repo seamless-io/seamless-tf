@@ -150,20 +150,6 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
 
   # [END] Configuring load balancer listener
 
-  # [START] Configuring queue listener
-  setting {
-    namespace = "aws:elasticbeanstalk:sqsd"
-    name      = "WorkerQueueURL"
-    value     = "https://sqs.us-east-1.amazonaws.com/202868668807/scheduled-to-execute.fifo"
-    }
-
-  setting {
-    namespace = "aws:elasticbeanstalk:sqsd"
-    name      = "HttpPath"
-    value     = "/jobs/execute"
-    }
-  # [END] Configuring queue listener
-
 }
 
 
@@ -297,28 +283,6 @@ resource "aws_elastic_beanstalk_environment" "web-worker-prod-env" {
       name      = "AWS_REGION_NAME"
       value     = var.AWS_REGION         # Environment variable needed for boto3 client
     }
-
-  # [START] Configuring load balancer listener
-
-    setting {
-      namespace = "aws:elasticbeanstalk:environment"
-      name      = "LoadBalancerType"
-      value     = "application"
-    }
-
-  setting {
-      namespace = "aws:elbv2:listener:443"
-      name      = "Protocol"
-      value     = "HTTPS"
-    }
-
-  setting {
-    namespace = "aws:elbv2:listener:443"
-    name      = "SSLCertificateArns"
-    value     = "arn:aws:acm:us-east-1:202868668807:certificate/c6c35492-9e92-4d6c-bd12-9ff974c373df"
-    }
-
-  # [END] Configuring load balancer listener
 
   # [START] Configuring queue listener
   setting {

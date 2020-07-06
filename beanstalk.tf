@@ -288,7 +288,7 @@ resource "aws_elastic_beanstalk_environment" "web-worker-prod-env" {
   setting {
     namespace = "aws:elasticbeanstalk:sqsd"
     name      = "WorkerQueueURL"
-    value     = "https://sqs.us-east-1.amazonaws.com/202868668807/scheduled-to-execute.fifo"
+    value     = format("https://sqs.us-east-1.amazonaws.com/202868668807/%s", aws_sqs_queue.jobs_queue.name)
     }
 
   setting {

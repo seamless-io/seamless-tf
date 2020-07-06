@@ -288,7 +288,7 @@ resource "aws_elastic_beanstalk_environment" "web-worker-prod-env" {
   setting {
     namespace = "aws:elasticbeanstalk:sqsd"
     name      = "WorkerQueueURL"
-    value     = format("https://sqs.us-east-1.amazonaws.com/202868668807/%s", aws_sqs_queue.jobs_queue.name)
+    value     = format("https://sqs.us-east-1.amazonaws.com/202868668807/%s", aws_sqs_queue.jobs.name)
     }
 
   setting {

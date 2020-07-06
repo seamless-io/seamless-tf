@@ -17,7 +17,9 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
         "logs:CreateLogGroup",
         "logs:PutRetentionPolicy",
         "logs:DescribeLogStreams",
-        "logs:DescribeLogGroups"
+        "logs:DescribeLogGroups",
+        "events:PutRule",
+        "events:PutTargets"
       ],
       "Effect": "Allow",
       "Resource": "*"

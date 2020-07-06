@@ -150,4 +150,18 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
 
   # [END] Configuring load balancer listener
 
+  # [START] Configuring queue listener
+  setting {
+    namespace = "aws:elasticbeanstalk:sqsd"
+    name      = "WorkerQueueURL"
+    value     = "https://sqs.us-east-1.amazonaws.com/202868668807/scheduled-to-execute.fifo"
+    }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:sqsd"
+    name      = "HttpPath"
+    value     = "/jobs/execute"
+    }
+  # [END] Configuring queue listener
+
 }

@@ -152,8 +152,8 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
-      name      = "SNS_PASSWORD"
-      value     = data.aws_kms_secrets.web_prod_sns.plaintext["password"]  # Password to authenticate sns requests
+      name      = "SCHEDULE_PASSWORD"
+      value     = data.aws_kms_secrets.web_prod_sns.plaintext["password"]  # Password to authenticate schedule requests from lambda
     }
 
 }

@@ -25,3 +25,10 @@ data "aws_kms_secrets" "web_prod_env" {
     payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGJ1pqZHQP1JVCJzwOB1nF8AAAAojCBnwYJKoZIhvcNAQcGoIGRMIGOAgEAMIGIBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDBhc/CUYmhFHaLrAWwIBEIBb6JIvdaMOhBXboTYY3XQgF5X/OAH2In7Db7xrzCM8JJNdn1gGAZHfsx1UIRZYVx7vhp6wVtLCYPh/uetNX2kuasCwC2gBis4i7MxGlH2UwDtM3JJ1MPPH2bGStw=="
   }
 }
+
+data "aws_kms_secrets" "web_prod_sns" {
+  secret {
+    name    = "password"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGQgzu9Rkwa8X/WHAI7BZL4AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMEXYvJljFxVhpAEQUAgEQgDsibl1bDAcYKaH7obttgZorj5YrSACEOSdLGI5E6/MXgwc+u/elNLBIUrAeJHcoF74xaHVmJ/so9fdIUg=="
+  }
+}

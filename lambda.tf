@@ -62,3 +62,10 @@ resource "aws_iam_role_policy_attachment" "schedule_events_proxy_lambda_logs" {
   role       = aws_iam_role.iam_for_schedule_events_proxy_lambda.name
   policy_arn = aws_iam_policy.schedule_events_proxy_lambda_logging.arn
 }
+
+resource "aws_lambda_permission" "allow_cloudwatch" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.schedule_events_proxy.function_name
+  principal     = "events.amazonaws.com"
+}

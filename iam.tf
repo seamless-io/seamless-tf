@@ -2,7 +2,7 @@
 ##                    Web Prod                     ##
 #####################################################
 
-resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to work with cloudwatch
+resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to work with other services
   name        = "web_instance_policy"
 
   policy = <<EOF
@@ -58,6 +58,15 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
       "Resource": [
           "arn:aws:dynamodb:*:*:table/*-stack-AWSEBWorkerCronLeaderRegistry*"
       ]
+    },
+    {
+      "Sid": "S3Access",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
   ]
 }

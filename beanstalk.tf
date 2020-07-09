@@ -10,7 +10,7 @@ resource "aws_elastic_beanstalk_application" "web-prod" {
 resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   name                = "web-prod-env"
   application         = aws_elastic_beanstalk_application.web-prod.name
-  solution_stack_name = "64bit Amazon Linux 2 v3.0.2 running Python 3.7"
+  solution_stack_name = "64bit Amazon Linux 2 v3.0.3 running Python 3.7"
 
   setting {
       namespace = "aws:autoscaling:asg"
@@ -128,7 +128,7 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
       value     = var.AWS_REGION         # Environment variable needed for boto3 client
     }
 
-  # [START] Configuring load balancer listener
+  # [START] Configuring load balancer
 
     setting {
       namespace = "aws:elasticbeanstalk:environment"
@@ -148,12 +148,52 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
     value     = "arn:aws:acm:us-east-1:202868668807:certificate/c6c35492-9e92-4d6c-bd12-9ff974c373df"
     }
 
-  # [END] Configuring load balancer listener
+//  setting {
+//      namespace = "aws:elbv2:loadbalancer"
+//      name      = "AccessLogsS3Enabled"
+//      value     = true
+//    }
+//
+//  setting {
+//      namespace = "aws:elbv2:loadbalancer"
+//      name      = "AccessLogsS3Bucket"
+//      value     = aws_s3_bucket.web-prod-load-balancer-access-logs.bucket
+//    }
+
+  # [END] Configuring load balancer
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SCHEDULE_PASSWORD"
       value     = data.aws_kms_secrets.web_prod_sns.plaintext["password"]  # Password to authenticate schedule requests from lambda
     }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:command"
+    name      = "DeploymentPolicy"
+    value     = "RollingWithAdditionalBatch" # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+    }
+
+  # [START] Configuring health checks
+
+//  setting {
+//      namespace = "aws:elasticbeanstalk:environment:process:default"
+//      name      = "Protocol"
+//      value     = "HTTPS"
+//    }
+//
+  setting {
+      namespace = "aws:elasticbeanstalk:environment:process:default"
+      name      = "HealthCheckPath"
+      value     = "/health-check"
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:environment:process:default"
+      name      = "HealthCheckInterval"
+      value     = "60"
+    }
+
+  # [END] Configuring health checks
 
 }

@@ -148,18 +148,6 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
     value     = "arn:aws:acm:us-east-1:202868668807:certificate/c6c35492-9e92-4d6c-bd12-9ff974c373df"
     }
 
-//  setting {
-//      namespace = "aws:elbv2:loadbalancer"
-//      name      = "AccessLogsS3Enabled"
-//      value     = true
-//    }
-//
-//  setting {
-//      namespace = "aws:elbv2:loadbalancer"
-//      name      = "AccessLogsS3Bucket"
-//      value     = aws_s3_bucket.web-prod-load-balancer-access-logs.bucket
-//    }
-
   # [END] Configuring load balancer
 
   setting {
@@ -176,12 +164,6 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
 
   # [START] Configuring health checks
 
-//  setting {
-//      namespace = "aws:elasticbeanstalk:environment:process:default"
-//      name      = "Protocol"
-//      value     = "HTTPS"
-//    }
-//
   setting {
       namespace = "aws:elasticbeanstalk:environment:process:default"
       name      = "HealthCheckPath"

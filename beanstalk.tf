@@ -128,6 +128,12 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
       value     = var.AWS_REGION         # Environment variable needed for boto3 client
     }
 
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "SENTRY_DSN"
+      value     = "https://4ba001ae14664734a6711e4eb87c7f87@o420763.ingest.sentry.io/5339513" # Environment variable needed for sentry
+    }
+
   # [START] Configuring load balancer
 
     setting {

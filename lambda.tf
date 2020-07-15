@@ -25,6 +25,7 @@ resource "aws_lambda_function" "schedule_events_proxy" {
   handler           = "lambda_function.lambda_handler"
   source_code_hash  = filebase64sha256("schedule_events_proxy.zip")
   runtime           = "python3.8"
+  timeout           = 10
   depends_on        = [aws_iam_role_policy_attachment.schedule_events_proxy_lambda_logs]
 
   environment {

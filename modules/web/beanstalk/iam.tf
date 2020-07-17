@@ -1,7 +1,3 @@
-#####################################################
-##                    Web Prod                     ##
-#####################################################
-
 resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to work with other services
   name        = "web_instance_policy"
 

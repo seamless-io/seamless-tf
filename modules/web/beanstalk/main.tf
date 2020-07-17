@@ -1,15 +1,10 @@
-#####################################################
-##                    Web Prod                     ##
-#####################################################
-
-
-resource "aws_elastic_beanstalk_application" "web-prod" {
-  name        = "web-prod"
+resource "aws_elastic_beanstalk_application" "web" {
+  name        = format("web-%s", var.stage)
 }
 
-resource "aws_elastic_beanstalk_environment" "web-prod-env" {
-  name                = "web-prod-env"
-  application         = aws_elastic_beanstalk_application.web-prod.name
+resource "aws_elastic_beanstalk_environment" "web-env" {
+  name                = format("web-%s-env", var.stage)
+  application         = aws_elastic_beanstalk_application.web.name
   solution_stack_name = "64bit Amazon Linux 2 v3.0.3 running Python 3.7"
 
   setting {
@@ -39,13 +34,13 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   setting {
       namespace = "aws:autoscaling:launchconfiguration"
       name      = "EC2KeyName"
-      value     = aws_key_pair.web-prod-key-pair.key_name  # Key pair to access EC2 using ssh
+      value     = aws_key_pair.web-key-pair.key_name  # Key pair to access EC2 using ssh
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AWS_REGION_NAME"
-      value     = var.AWS_REGION         # Environment variable needed for boto3 client
+      value     = var.aws_region         # Environment variable needed for boto3 client
     }
 
   setting {
@@ -54,36 +49,42 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
         value     = aws_iam_instance_profile.web_instance_profile.name  # Add permissions to ec2 instances
       }
 
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "STAGE"
+      value     = var.stage
+    }
+
   # [START] Environment variables for database connection
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SEAMLESS_DB_NAME"
-      value     = aws_db_instance.web_prod.name
+      value     = var.rds_name
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SEAMLESS_DB_USER"
-      value     = aws_db_instance.web_prod.username
+      value     = var.rds_user
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SEAMLESS_DB_PASSWORD"
-      value     = aws_db_instance.web_prod.password
+      value     = var.rds_password
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SEAMLESS_DB_HOST"
-      value     = aws_db_instance.web_prod.address
+      value     = var.rds_host
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SEAMLESS_DB_PORT"
-      value     = aws_db_instance.web_prod.port
+      value     = var.rds_port
     }
 
   # [END] Environment variables for database connection
@@ -99,39 +100,33 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_CALLBACK_URL"
-      value     = "http://app.seamlesscloud.io/callback"
+      value     = var.auth0_callback_url
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_WEB_API_AUDIENCE"
-      value     = "web-prod-env.eba-qdrmggn8.us-east-1.elasticbeanstalk.com/core" # no API calls are made to this url and I cannot change it in Auth0 after creation
+      value     =  var.auth0_web_api_audience
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_CLIENT_ID"
-      value     = data.aws_kms_secrets.web_prod_env.plaintext["AUTH0_CLIENT_ID"]
+      value     = var.auth0_client_id
     }
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_CLIENT_SECRET"
-      value     = data.aws_kms_secrets.web_prod_env.plaintext["AUTH0_CLIENT_SECRET"]
+      value     = var.auth0_client_secret
     }
 
   # [END] Environment variables for Auth0 connection
 
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
-      name      = "AWS_REGION_NAME"
-      value     = var.AWS_REGION         # Environment variable needed for boto3 client
-    }
-
-  setting {
-      namespace = "aws:elasticbeanstalk:application:environment"
       name      = "SENTRY_DSN"
-      value     = "https://4ba001ae14664734a6711e4eb87c7f87@o420763.ingest.sentry.io/5339513" # Environment variable needed for sentry
+      value     = var.sentry_dsn # Environment variable needed for sentry
     }
 
   # [START] Configuring load balancer
@@ -151,16 +146,32 @@ resource "aws_elastic_beanstalk_environment" "web-prod-env" {
   setting {
     namespace = "aws:elbv2:listener:443"
     name      = "SSLCertificateArns"
-    value     = "arn:aws:acm:us-east-1:202868668807:certificate/c6c35492-9e92-4d6c-bd12-9ff974c373df"
+    value     = var.ssl_certificate_arn
     }
 
   # [END] Configuring load balancer
 
+  # [START] Environment variables for working with lambda proxy
+
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
-      name      = "SCHEDULE_PASSWORD"
-      value     = data.aws_kms_secrets.web_prod_sns.plaintext["password"]  # Password to authenticate schedule requests from lambda
+      name      = "LAMBDA_PROXY_PASSWORD"
+      value     = var.lambda_proxy_password
     }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "LAMBDA_PROXY_NAME"
+      value     = var.lambda_proxy_name
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "LAMBDA_PROXY_ARN"
+      value     = var.lambda_proxy_arn
+    }
+
+  # [END] Environment variables for working with lambda proxy
 
   setting {
     namespace = "aws:elasticbeanstalk:command"

@@ -6,6 +6,8 @@ resource "aws_kms_key" "terraform" {
 
 # To decrypt the password do `aws kms decrypt --ciphertext-blob <secret.payload> --output text --query Plaintext`
 
+####### PROD #######
+
 data "aws_kms_secrets" "web_prod_rds" {
   secret {
     name    = "password"
@@ -26,9 +28,38 @@ data "aws_kms_secrets" "web_prod_env" {
   }
 }
 
-data "aws_kms_secrets" "web_prod_sns" {
+data "aws_kms_secrets" "web_prod_lambda_proxy" {
   secret {
     name    = "password"
     payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGQgzu9Rkwa8X/WHAI7BZL4AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMEXYvJljFxVhpAEQUAgEQgDsibl1bDAcYKaH7obttgZorj5YrSACEOSdLGI5E6/MXgwc+u/elNLBIUrAeJHcoF74xaHVmJ/so9fdIUg=="
   }
 }
+
+####### STAGING #######
+
+//data "aws_kms_secrets" "web_staging_rds" {
+//  secret {
+//    name    = "password"
+//    payload =
+//  }
+//}
+//
+//data "aws_kms_secrets" "web_staging_env" {
+//
+//  secret {
+//    name    = "AUTH0_CLIENT_ID"
+//    payload =
+//  }
+//
+//  secret {
+//    name    = "AUTH0_CLIENT_SECRET"
+//    payload =
+//  }
+//}
+//
+//data "aws_kms_secrets" "web_staging_lambda_proxy" {
+//  secret {
+//    name    = "password"
+//    payload =
+//  }
+//}

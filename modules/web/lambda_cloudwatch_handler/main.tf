@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_for_lambda" {
-  name = format("iam_for_%s_lambda", var.function_name)
+  name = format("iam_for_lambda_cloudwatch_handler_%s", var.stage)
 
   assume_role_policy = <<EOF
 {
@@ -19,13 +19,13 @@ EOF
 }
 
 resource "aws_lambda_function" "function" {
-  filename          = var.file_name
-  function_name     = var.function_name
+  filename          = "modules/web/lambda_cloudwatch_handler/lambda.zip"
+  function_name     = format("lambda_cloudwatch_handler_%s", var.stage)
   role              = aws_iam_role.iam_for_lambda.arn
-  handler           = var.handler
-  source_code_hash  = filebase64sha256(var.file_name)
-  runtime           = var.runtime
-  timeout           = var.timeout
+  handler           = "lambda_function.lambda_handler"
+  source_code_hash  = filebase64sha256("modules/web/lambda_cloudwatch_handler/lambda.zip")
+  runtime           = "python3.8"
+  timeout           = 10
   depends_on        = [aws_iam_role_policy_attachment.lambda_logs]
 
   environment {
@@ -34,7 +34,7 @@ resource "aws_lambda_function" "function" {
 }
 
 resource "aws_iam_policy" "lambda_logging" {
-  name        = format("%s_lambda_logging", var.function_name)
+  name        = format("lambda_cloudwatch_handler_logging_%s", var.stage)
   path        = "/"
   description = "IAM policy for logging from a lambda"
 

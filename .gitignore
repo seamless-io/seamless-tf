@@ -30,4 +30,4 @@ override.tf.json
 
 *prod-key-pair*
 web-prod*
-core-prod*
+web-staging*

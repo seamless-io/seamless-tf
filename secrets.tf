@@ -37,29 +37,29 @@ data "aws_kms_secrets" "web_prod_lambda_proxy" {
 
 ####### STAGING #######
 
-//data "aws_kms_secrets" "web_staging_rds" {
-//  secret {
-//    name    = "password"
-//    payload =
-//  }
-//}
-//
-//data "aws_kms_secrets" "web_staging_env" {
-//
-//  secret {
-//    name    = "AUTH0_CLIENT_ID"
-//    payload =
-//  }
-//
-//  secret {
-//    name    = "AUTH0_CLIENT_SECRET"
-//    payload =
-//  }
-//}
-//
-//data "aws_kms_secrets" "web_staging_lambda_proxy" {
-//  secret {
-//    name    = "password"
-//    payload =
-//  }
-//}
+data "aws_kms_secrets" "web_staging_rds" {
+  secret {
+    name    = "password"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGyeKEFNjNUCBn34fUHq17tAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMtQmA3NGZeABgo5W3AgEQgDt32aH3j5OgL9LWBYf1SBre9lJmmBV7NeZ+0v8dQ6MJgMlO4GLIyWBk1ofKljupuBHPEq0BOrINih9r6g=="
+  }
+}
+
+data "aws_kms_secrets" "web_staging_env" {
+
+  secret {
+    name    = "AUTH0_CLIENT_ID"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGEzYESCU3bofgrd0mrcW58AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMpc8GW7m9pcMPTecpAgEQgDtJjsgzA7aRnYYeiyu0sFKPSsHJQGdGDZo9fm6a78xq9MiNj1fHTvgEq1+kWwe7pJ9bX3Bu/yWiLo+wJQ=="
+  }
+
+  secret {
+    name    = "AUTH0_CLIENT_SECRET"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQEb7K9cFYUeAERivJ94Bbb9AAAAojCBnwYJKoZIhvcNAQcGoIGRMIGOAgEAMIGIBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDBKps75B6jfAN75PywIBEIBbgZuLuxJGsQGrKvycc+hb7dnZaAdDByPz3nAWk/DgVNomwuKr9f9AqoPN4UIiVzskbo+MMfj8WpqV/J+GvVBLjs/WBPGVAd8az0ZvN+gUyIMoI9DsCb+/OmXKFA=="
+  }
+}
+
+data "aws_kms_secrets" "web_staging_lambda_proxy" {
+  secret {
+    name    = "password"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQEenDqfsWD0PtkSI8rzzRxGAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMTnOG7sMnOj6my9/OAgEQgDsSFrHC+3tAlqNzWUI1fLlA2I4NrVrtYa7jiFm0HETWZhZMzddeQuJytMjcccSOQzohMQYQbkZG/ddMmg=="
+  }
+}

@@ -26,6 +26,10 @@ variable "rds_password" {
   type = string
 }
 
+variable "auth0_base_url" {
+  type = string
+}
+
 variable "auth0_client_id" {
   type = string
 }

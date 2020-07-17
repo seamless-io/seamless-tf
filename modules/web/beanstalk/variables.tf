@@ -26,6 +26,10 @@ variable "rds_port" {
   type = string
 }
 
+variable "auth0_base_url" {
+  type = string
+}
+
 variable "auth0_callback_url" {
   type = string
 }

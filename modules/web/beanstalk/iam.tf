@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to work with other services
-  name        = "web_instance_policy"
+  name        = format("web_%s_instance_policy", var.stage)
 
   policy = <<EOF
 {
@@ -75,7 +75,7 @@ resource "aws_iam_role_policy_attachment" "web_instance_permissions" {
 }
 
 resource "aws_iam_role" "web_instance_role" {
-    name = "web_instance_role"
+    name = format("web_%s_instance_role", var.stage)
     assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -94,6 +94,6 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "web_instance_profile" {
-  name = "web_instance_profile"
+  name = format("web_%s_instance_profile", var.stage)
   role = aws_iam_role.web_instance_role.name
 }

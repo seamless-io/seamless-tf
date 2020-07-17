@@ -94,7 +94,7 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "AUTH0_BASE_URL"
-      value     = "https://seamlesscloud.us.auth0.com"
+      value     = var.auth0_base_url
     }
 
   setting {

@@ -21,6 +21,6 @@ resource "aws_db_instance" "web" {
   skip_final_snapshot    = true
   apply_immediately      = true
   publicly_accessible    = true
-  vpc_security_group_ids = [aws_security_group.allow_internet_access_to_rds.id]
+  vpc_security_group_ids = [aws_security_group.rds_security_group.id]
   parameter_group_name   = aws_db_parameter_group.web_rds_parameter_group.name
 }

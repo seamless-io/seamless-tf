@@ -1,5 +1,5 @@
-resource "aws_security_group" "allow_internet_access_to_rds" {
-  name        = "allow_internet_access_to_rds"
+resource "aws_security_group" "rds_security_group" {
+  name        = format("%s_rds_security_group", var.stage)
 
   ingress {
     from_port   = "5432"

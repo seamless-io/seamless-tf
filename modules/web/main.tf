@@ -25,6 +25,7 @@ module "beanstalk" {
   rds_password            = module.rds.password
   rds_host                = module.rds.host
   rds_port                = module.rds.port
+  auth0_base_url          = var.auth0_base_url
   auth0_callback_url      = format("https://%s/callback", var.domain)
   auth0_web_api_audience  = var.auth0_web_api_audience
   auth0_client_id         = var.auth0_client_id

@@ -61,7 +61,8 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
       "Sid": "S3Access",
       "Action": [
         "s3:PutObject",
-        "s3:GetObject"
+        "s3:GetObject",
+        "s3:DeleteObject"
       ],
       "Effect": "Allow",
       "Resource": "*"

@@ -41,3 +41,7 @@ variable "auth0_client_secret" {
 variable "auth0_web_api_audience" {
   type = string
 }
+
+variable "deployment_policy" {
+  type = string
+}

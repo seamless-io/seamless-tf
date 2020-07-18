@@ -176,7 +176,7 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
   setting {
     namespace = "aws:elasticbeanstalk:command"
     name      = "DeploymentPolicy"
-    value     = "RollingWithAdditionalBatch" # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+    value     = var.deployment_policy
     }
 
   # [START] Configuring health checks

@@ -35,4 +35,5 @@ module "beanstalk" {
   lambda_proxy_arn        = module.lambda_cloudwatch_handler.arn
   lambda_proxy_password   = var.lambda_proxy_password
   ssl_certificate_arn     = var.ssl_certificate_arn
+  deployment_policy       = var.deployment_policy
 }

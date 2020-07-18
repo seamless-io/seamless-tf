@@ -65,3 +65,7 @@ variable "lambda_proxy_password" {
 variable "ssl_certificate_arn" {
   type = string
 }
+
+variable "deployment_policy" {
+  type = string
+}

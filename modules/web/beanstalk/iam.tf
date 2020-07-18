@@ -22,7 +22,9 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
       "Sid": "CloudWatchEventsAccess",
       "Action": [
         "events:PutRule",
-        "events:PutTargets"
+        "events:DeleteRule",
+        "events:PutTargets",
+        "events:RemoveTargets"
       ],
       "Effect": "Allow",
       "Resource": "*"

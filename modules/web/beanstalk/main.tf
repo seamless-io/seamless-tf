@@ -195,4 +195,10 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
 
   # [END] Configuring health checks
 
+  setting {
+      namespace = "aws:ec2:instances"
+      name      = "InstanceTypes"
+      value     = var.ec2_instance_type
+    }
+
 }

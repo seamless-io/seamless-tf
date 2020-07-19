@@ -36,4 +36,5 @@ module "beanstalk" {
   lambda_proxy_password   = var.lambda_proxy_password
   ssl_certificate_arn     = var.ssl_certificate_arn
   deployment_policy       = var.deployment_policy
+  ec2_instance_type       = var.ec2_instance_type
 }

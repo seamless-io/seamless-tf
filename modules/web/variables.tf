@@ -45,3 +45,7 @@ variable "auth0_web_api_audience" {
 variable "deployment_policy" {
   type = string
 }
+
+variable "ec2_instance_type" {
+  type = string
+}

@@ -13,6 +13,7 @@ module "web-prod" {
   auth0_client_secret     = data.aws_kms_secrets.web_prod_env.plaintext["AUTH0_CLIENT_SECRET"]
   auth0_web_api_audience  = "seamless-web-api"
   deployment_policy       = "RollingWithAdditionalBatch" # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+  ec2_instance_type       = "t2.micro"
 }
 
 module "web-staging" {
@@ -30,4 +31,5 @@ module "web-staging" {
   auth0_client_secret     = data.aws_kms_secrets.web_staging_env.plaintext["AUTH0_CLIENT_SECRET"]
   auth0_web_api_audience  = "seamless-web-api"
   deployment_policy       = "AllAtOnce" # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
+  ec2_instance_type       = "c5.large"
 }

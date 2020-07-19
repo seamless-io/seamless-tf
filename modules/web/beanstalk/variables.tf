@@ -69,3 +69,7 @@ variable "ssl_certificate_arn" {
 variable "deployment_policy" {
   type = string
 }
+
+variable "ec2_instance_type" {
+  type = string
+}

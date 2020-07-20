@@ -38,6 +38,6 @@ module "web-staging" {
   auth0_web_api_audience  = "seamless-web-api"
   deployment_policy       = "AllAtOnce" # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
   ec2_instance_type       = "t2.micro"
-  min_ec2_instances       = 2
-  max_ec2_instances       = 2
+  min_ec2_instances       = 1
+  max_ec2_instances       = 1
 }

@@ -13,6 +13,8 @@ module "rds" {
 
   stage                   = var.stage
   password                = var.rds_password
+  backups                 = var.rds_backups
+  rds_deletion_protection = var.rds_deletion_protection
 }
 
 module "beanstalk" {

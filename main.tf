@@ -8,6 +8,8 @@ module "web-prod" {
   lambda_proxy_password   = data.aws_kms_secrets.web_prod_lambda_proxy.plaintext["password"]  # Password to authenticate schedule requests
   domain                  = "app.seamlesscloud.io"
   rds_password            = data.aws_kms_secrets.web_prod_rds.plaintext["password"]
+  rds_backups             = true
+  rds_deletion_protection = true
   auth0_base_url          = "https://seamlesscloud.us.auth0.com"
   auth0_client_id         = data.aws_kms_secrets.web_prod_env.plaintext["AUTH0_CLIENT_ID"]
   auth0_client_secret     = data.aws_kms_secrets.web_prod_env.plaintext["AUTH0_CLIENT_SECRET"]
@@ -26,6 +28,8 @@ module "web-staging" {
   lambda_proxy_password   = data.aws_kms_secrets.web_staging_lambda_proxy.plaintext["password"]  # Password to authenticate schedule requests
   domain                  = "staging-app.seamlesscloud.io"
   rds_password            = data.aws_kms_secrets.web_staging_rds.plaintext["password"]
+  rds_backups             = false
+  rds_deletion_protection = false
   auth0_base_url          = "https://staging-seamlesscloud.us.auth0.com"
   auth0_client_id         = data.aws_kms_secrets.web_staging_env.plaintext["AUTH0_CLIENT_ID"]
   auth0_client_secret     = data.aws_kms_secrets.web_staging_env.plaintext["AUTH0_CLIENT_SECRET"]

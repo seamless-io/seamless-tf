@@ -26,6 +26,14 @@ variable "rds_password" {
   type = string
 }
 
+variable "rds_backups" {
+  type = bool
+}
+
+variable "rds_deletion_protection" {
+  type = bool
+}
+
 variable "auth0_base_url" {
   type = string
 }

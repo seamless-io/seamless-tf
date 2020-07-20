@@ -10,7 +10,13 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
   setting {
       namespace = "aws:autoscaling:asg"
       name      = "MaxSize"
-      value     = 1                     # Create no more than 1 EC2 instance
+      value     = var.max_ec2_instances
+    }
+
+  setting {
+      namespace = "aws:autoscaling:asg"
+      name      = "MinSize"
+      value     = var.min_ec2_instances
     }
 
   setting {

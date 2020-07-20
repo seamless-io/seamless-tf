@@ -39,4 +39,6 @@ module "beanstalk" {
   ssl_certificate_arn     = var.ssl_certificate_arn
   deployment_policy       = var.deployment_policy
   ec2_instance_type       = var.ec2_instance_type
+  min_ec2_instances       = var.min_ec2_instances
+  max_ec2_instances       = var.max_ec2_instances
 }

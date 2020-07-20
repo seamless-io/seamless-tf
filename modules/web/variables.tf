@@ -57,3 +57,11 @@ variable "deployment_policy" {
 variable "ec2_instance_type" {
   type = string
 }
+
+variable "min_ec2_instances" {
+  type = number
+}
+
+variable "max_ec2_instances" {
+  type = number
+}

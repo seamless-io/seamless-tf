@@ -207,10 +207,4 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
       value     = var.ec2_instance_type
     }
 
-  setting {
-      namespace = "aws:elasticbeanstalk:environment:proxy:staticfiles"
-      name      = "/static"
-      value     = "static"  # Let nginx serve static files
-    }
-
 }

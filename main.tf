@@ -17,7 +17,7 @@ module "web-prod" {
   deployment_policy       = "RollingWithAdditionalBatch" # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
   ec2_instance_type       = "t2.micro"
   min_ec2_instances       = 1
-  max_ec2_instances       = 1
+  max_ec2_instances       = 5
 }
 
 module "web-staging" {
@@ -39,5 +39,5 @@ module "web-staging" {
   deployment_policy       = "AllAtOnce" # https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html
   ec2_instance_type       = "t2.micro"
   min_ec2_instances       = 1
-  max_ec2_instances       = 1
+  max_ec2_instances       = 5
 }

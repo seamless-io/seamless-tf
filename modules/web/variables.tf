@@ -65,3 +65,11 @@ variable "min_ec2_instances" {
 variable "max_ec2_instances" {
   type = number
 }
+
+variable "telegram_bot_api_key" {
+  type = string
+}
+
+variable "telegram_channel_id" {
+  type = string
+}

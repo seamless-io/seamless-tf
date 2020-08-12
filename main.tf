@@ -18,6 +18,8 @@ module "web-prod" {
   ec2_instance_type       = "t2.micro"
   min_ec2_instances       = 1
   max_ec2_instances       = 5
+  telegram_bot_api_key    = "1255342796:AAEizpkIceVD7saXaaCCOYvEBk5khnvABn8"
+  telegram_channel_id     = "-1001387753505"
 }
 
 module "web-staging" {
@@ -40,4 +42,6 @@ module "web-staging" {
   ec2_instance_type       = "t2.micro"
   min_ec2_instances       = 1
   max_ec2_instances       = 5
+  telegram_bot_api_key    = ""
+  telegram_channel_id     = ""
 }

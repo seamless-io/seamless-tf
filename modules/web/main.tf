@@ -41,4 +41,6 @@ module "beanstalk" {
   ec2_instance_type       = var.ec2_instance_type
   min_ec2_instances       = var.min_ec2_instances
   max_ec2_instances       = var.max_ec2_instances
+  telegram_bot_api_key    = var.telegram_bot_api_key
+  telegram_channel_id     = var.telegram_channel_id
 }

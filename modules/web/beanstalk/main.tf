@@ -179,6 +179,22 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
 
   # [END] Environment variables for working with lambda proxy
 
+  # [START] Environment variables for telegram bot
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "TELEGRAM_BOT_API_KEY"
+      value     = var.telegram_bot_api_key
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "TELEGRAM_CHANNEL_ID"
+      value     = var.telegram_channel_id
+    }
+
+  # [END] Environment variables for telegram bot
+
   setting {
     namespace = "aws:elasticbeanstalk:command"
     name      = "DeploymentPolicy"

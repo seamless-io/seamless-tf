@@ -23,6 +23,8 @@ resource "aws_iam_policy" "web_instance_policy" {   # Allow instances of web to 
       "Action": [
         "events:PutRule",
         "events:DeleteRule",
+        "events:DisableRule",
+        "events:EnableRule",
         "events:PutTargets",
         "events:RemoveTargets"
       ],

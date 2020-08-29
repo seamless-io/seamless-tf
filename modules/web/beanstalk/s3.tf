@@ -16,4 +16,8 @@ resource "aws_s3_bucket" "web-jobs" {
     Name        = format("Web %s Jobs", var.stage)
     Environment = var.stage
   }
+
+  versioning {
+    enabled = var.jobs_s3_versioning
+  }
 }

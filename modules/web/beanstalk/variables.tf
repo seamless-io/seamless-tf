@@ -89,3 +89,11 @@ variable "telegram_bot_api_key" {
 variable "telegram_channel_id" {
   type = string
 }
+
+variable "email_automation_password" {
+  type = string
+}
+
+variable "jobs_s3_versioning" {
+  type = bool
+}

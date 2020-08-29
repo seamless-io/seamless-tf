@@ -63,3 +63,10 @@ data "aws_kms_secrets" "web_staging_lambda_proxy" {
     payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQEenDqfsWD0PtkSI8rzzRxGAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMTnOG7sMnOj6my9/OAgEQgDsSFrHC+3tAlqNzWUI1fLlA2I4NrVrtYa7jiFm0HETWZhZMzddeQuJytMjcccSOQzohMQYQbkZG/ddMmg=="
   }
 }
+
+data "aws_kms_secrets" "andrey_gmail_app" {
+  secret {
+    name    = "password"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQHIGHcBbEkUwuw1vTUYo8W0AAAAbjBsBgkqhkiG9w0BBwagXzBdAgEAMFgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMcQUe4MFFr4Tj1QxXAgEQgCuhCZ2KlKHWD7iDPQdQGNkauO4/cAy+QU4r/nkM5ft38vKHXmeM1gDYb8uZ"
+  }
+}

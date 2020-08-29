@@ -196,6 +196,12 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
   # [END] Environment variables for telegram bot
 
   setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "EMAIL_AUTOMATION_PASSWORD"
+      value     = var.email_automation_password
+    }
+
+  setting {
     namespace = "aws:elasticbeanstalk:command"
     name      = "DeploymentPolicy"
     value     = var.deployment_policy

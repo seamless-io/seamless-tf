@@ -45,4 +45,5 @@ module "beanstalk" {
   telegram_channel_id       = var.telegram_channel_id
   email_automation_password = var.email_automation_password
   jobs_s3_versioning        = var.jobs_s3_versioning
+  github_actions_password   = var.github_actions_password
 }

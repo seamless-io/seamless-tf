@@ -22,6 +22,7 @@ module "web-prod" {
   telegram_channel_id       = "-1001387753505"
   email_automation_password = data.aws_kms_secrets.andrey_gmail_app.plaintext["password"]
   jobs_s3_versioning        = true
+  github_actions_password   = ""
 }
 
 module "web-staging" {
@@ -48,4 +49,5 @@ module "web-staging" {
   telegram_channel_id       = ""
   email_automation_password = ""
   jobs_s3_versioning        = false
+  github_actions_password   = data.aws_kms_secrets.andrey_gmail_app.plaintext["password"]
 }

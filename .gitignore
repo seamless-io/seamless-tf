@@ -32,3 +32,4 @@ override.tf.json
 web-prod*
 web-staging*
 andrey-gmail-app-password
+github-actions-password

@@ -70,3 +70,10 @@ data "aws_kms_secrets" "andrey_gmail_app" {
     payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQHIGHcBbEkUwuw1vTUYo8W0AAAAbjBsBgkqhkiG9w0BBwagXzBdAgEAMFgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMcQUe4MFFr4Tj1QxXAgEQgCuhCZ2KlKHWD7iDPQdQGNkauO4/cAy+QU4r/nkM5ft38vKHXmeM1gDYb8uZ"
   }
 }
+
+data "aws_kms_secrets" "github_actions" {
+  secret {
+    name    = "password"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGPNQriB2SihJqY0Zj0ccF8AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGxaJgQXBA6wZituVAgEQgDuidYDbgafjZMOBFtBAsAuFwEa7Xn0dpEt9QwxzryR2WAyBK6iJB68LnQAifZPJlE8FVDVdsFxV0Ct0Sg=="
+  }
+}

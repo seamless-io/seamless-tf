@@ -202,6 +202,12 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
     }
 
   setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "GITHUB_ACTIONS_PASSWORD"
+      value     = var.github_actions_password
+    }
+
+  setting {
     namespace = "aws:elasticbeanstalk:command"
     name      = "DeploymentPolicy"
     value     = var.deployment_policy

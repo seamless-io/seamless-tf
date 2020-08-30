@@ -97,3 +97,7 @@ variable "email_automation_password" {
 variable "jobs_s3_versioning" {
   type = bool
 }
+
+variable "github_actions_password" {
+  type = string
+}

@@ -49,5 +49,5 @@ module "web-staging" {
   telegram_channel_id       = ""
   email_automation_password = ""
   jobs_s3_versioning        = false
-  github_actions_password   = data.aws_kms_secrets.andrey_gmail_app.plaintext["password"]
+  github_actions_password   = data.aws_kms_secrets.github_actions.plaintext["password"]
 }

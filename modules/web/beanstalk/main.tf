@@ -28,7 +28,7 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
   setting {
       namespace = "aws:elasticbeanstalk:cloudwatch:logs"
       name      = "RetentionInDays"
-      value     = 1                     # Retain logs for only 1 day
+      value     = 7                     # Retain logs for 1 week
     }
 
   setting {

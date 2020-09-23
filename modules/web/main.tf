@@ -46,4 +46,6 @@ module "beanstalk" {
   email_automation_password = var.email_automation_password
   jobs_s3_versioning        = var.jobs_s3_versioning
   github_actions_password   = var.github_actions_password
+  email_smtp_username       = var.email_smtp_username
+  email_smtp_password       = var.email_smtp_password
 }

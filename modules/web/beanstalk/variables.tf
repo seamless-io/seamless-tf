@@ -101,3 +101,11 @@ variable "jobs_s3_versioning" {
 variable "github_actions_password" {
   type = string
 }
+
+variable "email_smtp_username" {
+  type = string
+}
+
+variable "email_smtp_password" {
+  type = string
+}

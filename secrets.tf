@@ -77,3 +77,15 @@ data "aws_kms_secrets" "github_actions" {
     payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGPNQriB2SihJqY0Zj0ccF8AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGxaJgQXBA6wZituVAgEQgDuidYDbgafjZMOBFtBAsAuFwEa7Xn0dpEt9QwxzryR2WAyBK6iJB68LnQAifZPJlE8FVDVdsFxV0Ct0Sg=="
   }
 }
+
+data "aws_kms_secrets" "email_smtp" {
+  secret {
+    name    = "username"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQHJSC1GRKlWDaABwkZZILu+AAAAcjBwBgkqhkiG9w0BBwagYzBhAgEAMFwGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMJ7R9xB8MsLMCPadYAgEQgC/zQ71809oCBWJQol9fSvsQI/a9qXxr/Lg1vW6DSDKJVev19XIKSWTuM++X9K9bGQ=="
+  }
+
+  secret {
+    name    = "password"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQHTbuwSiZOyAZNAOEOJxSN3AAAAizCBiAYJKoZIhvcNAQcGoHsweQIBADB0BgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDCkjzwupoDHzv+y9+wIBEIBHdxWfj81jdJqS0EkG0PzPxeCaCLex8AZdUAuWrlARlmdSyea0YN9ojJU7AX9OESDvTainflcZ6eKAh4uGiNDVEn+LaQPIfkE="
+  }
+}

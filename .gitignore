@@ -33,3 +33,4 @@ web-prod*
 web-staging*
 andrey-gmail-app-password
 github-actions-password
+email-smtp-*

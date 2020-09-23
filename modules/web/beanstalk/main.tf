@@ -195,6 +195,22 @@ resource "aws_elastic_beanstalk_environment" "web-env" {
 
   # [END] Environment variables for telegram bot
 
+  # [START] Environment variables for SMTP server
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "EMAIL_SMTP_USERNAME"
+      value     = var.email_smtp_username
+    }
+
+  setting {
+      namespace = "aws:elasticbeanstalk:application:environment"
+      name      = "EMAIL_SMTP_PASSWORD"
+      value     = var.email_smtp_password
+    }
+
+  # [END] Environment variables for SMTP server
+
   setting {
       namespace = "aws:elasticbeanstalk:application:environment"
       name      = "EMAIL_AUTOMATION_PASSWORD"

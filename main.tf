@@ -3,7 +3,7 @@ module "web-prod" {
 
   stage                     = "prod"
   aws_region                = var.AWS_REGION
-  sentry_dsn                = "https://4ba001ae14664734a6711e4eb87c7f87@o420763.ingest.sentry.io/5339513"
+  sentry_dsn                = data.aws_kms_secrets.sentry["dsn"]
   ssl_certificate_arn       = "arn:aws:acm:us-east-1:202868668807:certificate/c6c35492-9e92-4d6c-bd12-9ff974c373df"
   lambda_proxy_password     = data.aws_kms_secrets.web_prod_lambda_proxy.plaintext["password"]  # Password to authenticate schedule requests
   domain                    = "app.seamlesscloud.io"
@@ -18,8 +18,8 @@ module "web-prod" {
   ec2_instance_type         = "t2.micro"
   min_ec2_instances         = 1
   max_ec2_instances         = 5
-  telegram_bot_api_key      = "1255342796:AAEizpkIceVD7saXaaCCOYvEBk5khnvABn8"
-  telegram_channel_id       = "-1001387753505"
+  telegram_bot_api_key      = data.aws_kms_secrets.telegram["bot_api_key"]
+  telegram_channel_id       = data.aws_kms_secrets.telegram["channel_id"]
   email_automation_password = data.aws_kms_secrets.andrey_gmail_app.plaintext["password"]
   jobs_s3_versioning        = true
   github_actions_password   = data.aws_kms_secrets.github_actions.plaintext["password"]

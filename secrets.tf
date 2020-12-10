@@ -1,3 +1,6 @@
+####### Note #######
+####################
+
 resource "aws_kms_key" "terraform" {
   description             = "terraform secrets"
   deletion_window_in_days = 10
@@ -64,6 +67,8 @@ data "aws_kms_secrets" "web_staging_lambda_proxy" {
   }
 }
 
+####### ALL STAGES #######
+
 data "aws_kms_secrets" "andrey_gmail_app" {
   secret {
     name    = "password"
@@ -87,5 +92,24 @@ data "aws_kms_secrets" "email_smtp" {
   secret {
     name    = "password"
     payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQHTbuwSiZOyAZNAOEOJxSN3AAAAizCBiAYJKoZIhvcNAQcGoHsweQIBADB0BgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDCkjzwupoDHzv+y9+wIBEIBHdxWfj81jdJqS0EkG0PzPxeCaCLex8AZdUAuWrlARlmdSyea0YN9ojJU7AX9OESDvTainflcZ6eKAh4uGiNDVEn+LaQPIfkE="
+  }
+}
+
+data "aws_kms_secrets" "sentry" {
+  secret {
+    name    = "dsn"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQGBzd1fLcU3/dvaUwECoL3mAAAArDCBqQYJKoZIhvcNAQcGoIGbMIGYAgEAMIGSBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDFgOCd1ZdMh9MsZV9QIBEIBlwAH7sJjPG6t8AfleSYkztMLoXtvTRry82pPDUWf8uX2Ql9yY5v2GwI/xr9Pp63jmIxNo9tlaGyXF2lGYmYx6z8c6GzQmXbUBfwjcWfEi/vN2DfVwLbI82f6AY3A+poCdoRHk+Pg="
+  }
+}
+
+data "aws_kms_secrets" "telegram" {
+  secret {
+    name    = "bot_api_key"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQFfUB83CKP5grPNckVvro/WAAAAjTCBigYJKoZIhvcNAQcGoH0wewIBADB2BgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDGpCH1iArDZjIrGU9QIBEIBJm8CA+sbRyE5CGjMpMQkm6bjc88ciFu661Gvpl/9Xe+jBzVXRYmBIQbXjPtxsO1AKWcD9J5G1kzAXJyfzn2tfRwznpYtbeIaoVg=="
+  }
+
+  secret {
+    name    = "channel_id"
+    payload = "AQICAHgsOys+lvW8Nr7gsicGSZ+ceSlQiZ+POZ2GZay6khZ7DQHubmYIDd2crXCx880STIzKAAAAbDBqBgkqhkiG9w0BBwagXTBbAgEAMFYGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMAk4flsaCYMqsK4umAgEQgCk0O8JWnBIcZSka3OSCgVntN52wcg+5DimbSUFV5BHHy4YiPZc6LqDKzg=="
   }
 }

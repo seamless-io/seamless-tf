@@ -1,4 +1,7 @@
 ####### Note #######
+# Secrets below are encrypted using AWS KMS tool.
+# When deploying the application in your infrastructure you should encrypt your secrets using AWS KMS in your account.
+# Please see instructions on how to encrypt secrets in README
 ####################
 
 resource "aws_kms_key" "terraform" {

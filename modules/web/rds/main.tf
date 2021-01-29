@@ -13,7 +13,7 @@ resource "aws_db_instance" "web" {
   allocated_storage               = 20
   storage_type                    = "gp2"
   engine                          = "postgres"
-  engine_version                  = "10.9"
+  engine_version                  = "10.13"
   instance_class                  = "db.t2.micro"
   name                            = "seamless"
   username                        = "root"
